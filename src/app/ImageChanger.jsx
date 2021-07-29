@@ -1,19 +1,5 @@
 import React from 'react';
 
-const images = [
-    {
-        src: 'https://images.freeimages.com/images/large-previews/977/beach-1364350.jpg',
-        alt: 'Strand'
-    },
-    {
-        src: 'https://images.freeimages.com/images/large-previews/157/young-and-old-1399297.jpg',
-        alt: 'Flowers'
-    },
-    {
-        src: 'https://images.freeimages.com/images/large-previews/b31/butterfly-1392408.jpg',
-        alt: 'Butterfly'
-    }
-]
 
 const getNextIndex = (images, currentIndex) => {
     if (currentIndex === images.length -1) {
@@ -30,15 +16,15 @@ export class ImageChanger extends React.Component {
     }
 
     componentDidMount() {
-        setInterval(() => {
+        this.intervalId = setInterval(() => {
             this.changeImage();
-        }, 3000)
+        }, this.props.interval)
     }
 
     changeImage() {
         this.setState((state, props) => {
             return {
-                imageIndex: getNextIndex(images, state.imageIndex)
+                imageIndex: getNextIndex(props.images, state.imageIndex)
             }
             
         });
@@ -46,7 +32,7 @@ export class ImageChanger extends React.Component {
 
 
     render() {
-        const currentImage = images[this.state.imageIndex];
+        const currentImage = this.props.images[this.state.imageIndex];
         return (
             <img src={currentImage.src} alt={currentImage.alt} />
         );
