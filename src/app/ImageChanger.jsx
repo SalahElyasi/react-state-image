@@ -27,6 +27,9 @@ export class ImageChanger extends React.Component {
         super(props);
         this.state = { imageIndex: 0 };
 
+    }
+
+    componentDidMount() {
         setInterval(() => {
             this.changeImage();
         }, 3000)
