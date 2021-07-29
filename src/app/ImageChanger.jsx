@@ -33,8 +33,11 @@ export class ImageChanger extends React.Component {
     }
 
     changeImage() {
-        this.setState({
-            imageIndex: getNextIndex(images, this.state.imageIndex)
+        this.setState((state, props) => {
+            return {
+                imageIndex: getNextIndex(images, state.imageIndex)
+            }
+            
         });
     }
 
